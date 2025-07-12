@@ -1,4 +1,5 @@
 # import libraries
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -61,5 +62,5 @@ y_pred = pipeline.predict(X_test)
 print("R² Score:", r2_score(y_test, y_pred))
 print("MSE:", mean_squared_error(y_test, y_pred))
 
-# Save the pipeline
+# Save the model using joblib
 joblib.dump(pipeline, "salary_model.pkl")
