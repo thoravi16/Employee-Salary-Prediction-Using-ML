@@ -94,14 +94,6 @@ streamlit run streamlit_app.py
 
 ---
 
-## 🧑‍💻 Author
-
-**Abhishek Saurabh**
-B.Tech CSE | Full Stack & AI Enthusiast
-[LinkedIn](https://www.linkedin.com/in/abhishek-saurabh/) | [GitHub](https://github.com/abhisheksaurabh)
-
----
-
 ## 📜 License
 
 This project is for educational and internship project purposes only.
