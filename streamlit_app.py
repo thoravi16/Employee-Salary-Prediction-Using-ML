@@ -1,14 +1,11 @@
-# streamlit_app.py
-
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import cloudpickle
+import joblib
 
 # Load model and dataset
-with open("salary_model.pkl", "rb") as f:
-    model = cloudpickle.load(f)
+model = joblib.load("salary_model.pkl")
 df = pd.read_csv('adult 3.csv', on_bad_lines='skip')
 df = df.replace(" ?", pd.NA).dropna()
 df['income'] = df['income'].apply(lambda x: 1 if '>50K' in str(x) else 0)
