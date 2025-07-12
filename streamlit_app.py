@@ -2,12 +2,13 @@
 
 import streamlit as st
 import pandas as pd
-import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
+import cloudpickle
 
 # Load model and dataset
-model = joblib.load('salary_model.pkl')
+with open("salary_model.pkl", "rb") as f:
+    model = cloudpickle.load(f)
 df = pd.read_csv('adult 3.csv', on_bad_lines='skip')
 df = df.replace(" ?", pd.NA).dropna()
 
