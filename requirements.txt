@@ -4,4 +4,11 @@ numpy
 matplotlib
 seaborn
 scikit-learn==1.2.2
+joblibstreamlit
+pandas
+numpy
+scikit-learn==1.2.2
+matplotlib
+seaborn
 joblib
+cloudpickle
