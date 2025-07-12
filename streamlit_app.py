@@ -11,8 +11,6 @@ with open("salary_model.pkl", "rb") as f:
     model = cloudpickle.load(f)
 df = pd.read_csv('adult 3.csv', on_bad_lines='skip')
 df = df.replace(" ?", pd.NA).dropna()
-
-# Convert income column to binary
 df['income'] = df['income'].apply(lambda x: 1 if '>50K' in str(x) else 0)
 
 st.set_page_config(page_title="Employee Salary Predictor", layout="centered")

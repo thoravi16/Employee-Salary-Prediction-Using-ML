@@ -1,4 +1,6 @@
-streamlit
-pandas
+streamlit==1.28.2
+pandas==1.5.3
 scikit-learn==1.2.2
-cloudpickle
+seaborn==0.12.2
+matplotlib==3.7.1
+cloudpickle==2.2.1
