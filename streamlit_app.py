@@ -1,23 +1,22 @@
-# streamlit_app.py
-
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
 
-# Load model and dataset
+# Load model
 model = joblib.load("salary_model.pkl")
 
-df = pd.read_csv('adult 3.csv', on_bad_lines='skip')
+# Load and clean dataset
+df = pd.read_csv("adult 3.csv", on_bad_lines='skip')
 df = df.replace(" ?", pd.NA).dropna()
 df['income'] = df['income'].apply(lambda x: 1 if '>50K' in str(x) else 0)
 
 st.set_page_config(page_title="Employee Salary Predictor", layout="centered")
-st.title("💼 Employee Salary Prediction Using ML")
-st.markdown("🔍 Enter employee details below to predict their income category.")
+st.title("💼 Employee Salary Prediction Using ML/DL/AI")
+st.markdown("🔍 Enter employee details below to predict their **salary**.")
 
-# Sidebar Insights
+# Sidebar: Insights
 st.sidebar.header("📊 Data Insights")
 
 if st.sidebar.checkbox("Income Distribution"):
@@ -30,8 +29,8 @@ if st.sidebar.checkbox("Income Distribution"):
 if st.sidebar.checkbox("Education vs Income"):
     fig, ax = plt.subplots(figsize=(10, 5))
     sns.boxplot(data=df, x="education", y="income", ax=ax)
-    ax.set_title("Education Level vs Income")
     plt.xticks(rotation=45)
+    ax.set_title("Education Level vs Income")
     st.sidebar.pyplot(fig)
 
 if st.sidebar.checkbox("Work Hours vs Income"):
@@ -47,7 +46,7 @@ if st.sidebar.checkbox("Avg Income by Occupation"):
     ax.set_title("Avg Income by Occupation")
     st.sidebar.pyplot(fig)
 
-# Main Form Input
+# Input Form
 st.subheader("🧾 Enter Employee Details")
 
 age = st.slider("Age", 18, 65, 30)
@@ -65,7 +64,7 @@ capital_loss = st.number_input("Capital Loss", value=0)
 hours_per_week = st.slider("Hours per Week", 1, 99, 40)
 native_country = st.selectbox("Native Country", df["native-country"].unique())
 
-# Form to dataframe
+# Create DataFrame
 input_df = pd.DataFrame({
     'age': [age],
     'workclass': [workclass],
@@ -83,8 +82,8 @@ input_df = pd.DataFrame({
     'native-country': [native_country]
 })
 
-# Prediction
-if st.button("Predict Income"):
-    prediction = model.predict(input_df)[0]
-    result = ">50K" if prediction > 0.5 else "<=50K"
-    st.success(f"✅ Predicted Income: **{result}**")
+# Prediction (REGRESSION)
+if st.button("Predict Salary"):
+    prediction = model.predict(input_df)
+    predicted_salary = round(prediction[0] * 100000, 2)  # scale-up if model was trained that way
+    st.success(f"💰 Predicted Salary: ₹{predicted_salary:,.2f}")
