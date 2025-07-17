@@ -1,4 +1,4 @@
-# 💼 Employee Salary Prediction
+# 💼 Employee Salary Prediction using ML
 
 This project is an ML/DL-powered Streamlit web app that predicts an employee's salary based on various features like age, education, occupation, etc.
 
